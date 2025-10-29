@@ -347,7 +347,7 @@ export default function UploadSection({ onComplete }: UploadSectionProps) {
             </div>
           </div>
         ) : (
-          <div className="space-y-6 animate-in fade-in duration-700">
+          <div className="space-y-8 animate-in fade-in duration-700">
             {/* Compact Image Card */}
             <div className="relative bg-white/5 backdrop-blur-sm border border-[#00ff88]/20 rounded-2xl overflow-hidden max-w-md mx-auto">
               {isProcessing && (
@@ -435,101 +435,87 @@ export default function UploadSection({ onComplete }: UploadSectionProps) {
                       )}
                     </div>
 
-                    {/* Inline Controls */}
-                    <div className="absolute bottom-2 left-2 right-2 z-20">
-                      <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3 space-y-2">
-                        <p className="text-xs text-[#00ff88] font-medium text-center">
-                          👆 Drag to move • Use controls below
-                        </p>
-                        
-                        {/* Quick Controls Row */}
-                        <div className="flex items-center justify-center gap-2">
-                          <button
-                            onClick={detectFaceManually}
-                            disabled={!modelsLoaded || faceDetectionStatus === 'detecting'}
-                            className="px-3 py-1 bg-[#00ff88]/20 border border-[#00ff88]/50 text-[#00ff88] rounded text-xs hover:bg-[#00ff88]/30 transition-all flex items-center gap-1 disabled:opacity-50"
-                          >
-                            {faceDetectionStatus === 'detecting' ? (
-                              <Loader2 size={12} className="animate-spin" />
-                            ) : (
-                              <Eye size={12} />
-                            )}
-                            <span>Auto-Detect</span>
-                          </button>
-                        </div>
-                        
-                        {/* Movement Controls */}
-                        <div className="flex flex-col items-center gap-1">
-                          <button
-                            onClick={() => moveGlasses("up")}
-                            className="px-2 py-1 bg-white/10 border border-white/30 text-white rounded text-xs hover:bg-white/20 transition-all"
-                            title="Move Up"
-                          >
-                            <ArrowUp size={12} />
-                          </button>
-                          <div className="flex items-center gap-1">
-                            <button
-                              onClick={() => moveGlasses("left")}
-                              className="px-2 py-1 bg-white/10 border border-white/30 text-white rounded text-xs hover:bg-white/20 transition-all"
-                              title="Move Left"
-                            >
-                              <ArrowLeft size={12} />
-                            </button>
-                            <button
-                              onClick={() => moveGlasses("down")}
-                              className="px-2 py-1 bg-white/10 border border-white/30 text-white rounded text-xs hover:bg-white/20 transition-all"
-                              title="Move Down"
-                            >
-                              <ArrowDown size={12} />
-                            </button>
-                            <button
-                              onClick={() => moveGlasses("right")}
-                              className="px-2 py-1 bg-white/10 border border-white/30 text-white rounded text-xs hover:bg-white/20 transition-all"
-                              title="Move Right"
-                            >
-                              <ArrowRight size={12} />
-                            </button>
-                          </div>
-                        </div>
-                        
-                        {/* Size & Rotation Controls */}
-                        <div className="flex items-center justify-center gap-2">
-                          <button
-                            onClick={() => adjustScale(0.2)}
-                            className="px-2 py-1 bg-white/10 border border-white/30 text-white rounded text-xs hover:bg-white/20 transition-all"
-                            title="Bigger"
-                          >
-                            <ZoomIn size={12} />
-                          </button>
-                          
-                          <button
-                            onClick={() => adjustScale(-0.2)}
-                            className="px-2 py-1 bg-white/10 border border-white/30 text-white rounded text-xs hover:bg-white/20 transition-all"
-                            title="Smaller"
-                          >
-                            <ZoomOut size={12} />
-                          </button>
-                          
-                          <button
-                            onClick={() => adjustRotation(0.1)}
-                            className="px-2 py-1 bg-white/10 border border-white/30 text-white rounded text-xs hover:bg-white/20 transition-all"
-                            title="Rotate Right"
-                          >
-                            <RotateCw size={12} />
-                          </button>
-                          
-                          <button
-                            onClick={() => adjustRotation(-0.1)}
-                            className="px-2 py-1 bg-white/10 border border-white/30 text-white rounded text-xs hover:bg-white/20 transition-all"
-                            title="Rotate Left"
-                          >
-                            <RotateCw size={12} className="scale-x-[-1]" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                    {/* Inline Controls removed - moved below card */}
                   </>
                 )}
+              </div>
+            </div>
+
+            {/* External Controls - below image card */}
+            <div className="max-w-md mx-auto grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <button
+                onClick={detectFaceManually}
+                disabled={!modelsLoaded || faceDetectionStatus === 'detecting'}
+                className="col-span-2 sm:col-span-3 px-4 py-3 bg-[#00ff88]/15 border border-[#00ff88]/40 text-[#00ff88] rounded-full text-sm hover:bg-[#00ff88]/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                {faceDetectionStatus === 'detecting' ? (
+                  <Loader2 size={16} className="animate-spin" />
+                ) : (
+                  <Eye size={16} />
+                )}
+                <span>Auto-Detect</span>
+              </button>
+
+              <button
+                onClick={() => moveGlasses("up")}
+                className="px-4 py-3 bg-white/10 border border-white/30 text-white rounded-full text-sm hover:bg-white/20 transition-all"
+                title="Move Up"
+              >
+                <ArrowUp size={16} />
+              </button>
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  onClick={() => moveGlasses("left")}
+                  className="px-4 py-3 bg-white/10 border border-white/30 text-white rounded-full text-sm hover:bg-white/20 transition-all"
+                  title="Move Left"
+                >
+                  <ArrowLeft size={16} />
+                </button>
+                <button
+                  onClick={() => moveGlasses("right")}
+                  className="px-4 py-3 bg-white/10 border border-white/30 text-white rounded-full text-sm hover:bg-white/20 transition-all"
+                  title="Move Right"
+                >
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+              <button
+                onClick={() => moveGlasses("down")}
+                className="px-4 py-3 bg-white/10 border border-white/30 text-white rounded-full text-sm hover:bg-white/20 transition-all"
+                title="Move Down"
+              >
+                <ArrowDown size={16} />
+              </button>
+
+              <button
+                onClick={() => adjustScale(0.2)}
+                className="px-4 py-3 bg-white/10 border border-white/30 text-white rounded-full text-sm hover:bg-white/20 transition-all"
+                title="Bigger"
+              >
+                <ZoomIn size={16} />
+              </button>
+              <button
+                onClick={() => adjustScale(-0.2)}
+                className="px-4 py-3 bg-white/10 border border-white/30 text-white rounded-full text-sm hover:bg-white/20 transition-all"
+                title="Smaller"
+              >
+                <ZoomOut size={16} />
+              </button>
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  onClick={() => adjustRotation(-0.1)}
+                  className="px-4 py-3 bg-white/10 border border-white/30 text-white rounded-full text-sm hover:bg-white/20 transition-all"
+                  title="Rotate Left"
+                >
+                  <RotateCw size={16} className="scale-x-[-1]" />
+                </button>
+                <button
+                  onClick={() => adjustRotation(0.1)}
+                  className="px-4 py-3 bg-white/10 border border-white/30 text-white rounded-full text-sm hover:bg-white/20 transition-all"
+                  title="Rotate Right"
+                >
+                  <RotateCw size={16} />
+                </button>
               </div>
             </div>
 
