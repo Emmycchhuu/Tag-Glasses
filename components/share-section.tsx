@@ -19,13 +19,7 @@ export default function ShareSection({ compositeImage, onNavigate }: ShareSectio
     // First download the image so user can attach it to their tweet
     downloadImage()
 
-    const text = encodeURIComponent("I just grabbed my TAG Lens 👀
-
-TAG is powering the digital identity economy layer.
-
-#IDFI Awakening campaign is live powered by SBTs.
-
-Get yours 👉 ")
+    const text = encodeURIComponent("I just grabbed my TAG Lens 👀, TAG is Powering the Digital Identity Economy Layer. #IDFI Awakening Campaign is Live Powered by SBTs Get yours 👉")
     const url = encodeURIComponent(window.location.href)
 
     // Open Twitter with pre-filled text
